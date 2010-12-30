@@ -32,6 +32,28 @@ describe Dragonfly::DataStorage::S3DataStore do
 
       it_should_behave_like 'data_store'
 
+      describe "generate_uid" do
+        context "without a specific_uid" do
+          it 'should the default value' do
+            @data_store.send(:generate_uid, "hello").should =~ /\d+\/\d+\/\d+\/\d+\/\d+\/\d+\/\w+\/hello/
+          end
+        end
+
+        context "with a specific_uid" do
+          before do
+            @data_store.specific_uid = lambda{|name| name}
+          end
+
+          after do
+            @data_store.specific_uid = nil
+          end
+
+          it 'should call the specific_uid lambda' do
+            @data_store.send(:generate_uid, "hello").should == 'hello'
+          end
+        end
+      end
+
       describe "store" do
         it "should return a unique identifier for each storage" do
           temp_object = Dragonfly::TempObject.new('gollum')

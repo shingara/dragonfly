@@ -19,6 +19,7 @@ module Dragonfly
       configurable_attr :access_key_id
       configurable_attr :secret_access_key
       configurable_attr :region
+      configurable_attr :specific_uid
       configurable_attr :use_filesystem, true
       configurable_attr :autocreate_bucket, false
 
@@ -92,7 +93,11 @@ module Dragonfly
       end
 
       def generate_uid(name)
-        "#{Time.now.strftime '%Y/%m/%d/%H/%M/%S'}/#{rand(1000)}/#{name.gsub(/[^\w.]+/, '_')}"
+        if self.specific_uid.is_a?(Proc)
+          self.specific_uid.call(name)
+        else
+          "#{Time.now.strftime '%Y/%m/%d/%H/%M/%S'}/#{rand(1000)}/#{name.gsub(/[^\w.]+/, '_')}"
+        end
       end
 
       def s3_metadata_for(extra_data)
