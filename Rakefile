@@ -3,13 +3,13 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
-    s.name = "dragonfly"
+    s.name = "fog-dragonfly"
     s.summary = %Q{Dragonfly is an on-the-fly Rack-based image handling framework.
     It is suitable for use with Rails, Sinatra and other web frameworks. Although it's mainly used for images,
     it can handle any content type.}
     s.email = "mark@new-bamboo.co.uk"
     s.homepage = "http://github.com/markevans/dragonfly"
-    s.authors = ["Mark Evans"]
+    s.authors = ["Mark Evans", 'Cyril Mougel']
     s.add_dependency('rack')
   end
   Jeweler::GemcutterTasks.new
