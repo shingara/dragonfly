@@ -56,7 +56,7 @@ describe Dragonfly::DataStorage::S3DataStore do
           data, extra = @data_store.retrieve(uid)
           data.should == 'eggheads'
         end
-        
+
         it "should work fine when not using the filesystem" do
           @data_store.use_filesystem = false
           temp_object = Dragonfly::TempObject.new('gollum')

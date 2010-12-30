@@ -2,7 +2,7 @@ source :rubygems
 
 # These gems are needed for development and testing
 group :development, :test, :cucumber do
-  gem 'aws-s3'
+  gem 'fog'
   gem 'bson_ext'
   gem 'capybara'
   gem 'cucumber', '0.8.5'
