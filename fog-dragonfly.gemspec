@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fog-dragonfly}
-  s.version = "0.8.1"
+  s.version = "0.8.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Evans", "Cyril Mougel"]
-  s.date = %q{2010-12-30}
+  s.date = %q{2011-02-01}
   s.email = %q{mark@new-bamboo.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -64,6 +64,7 @@ Gem::Specification.new do |s|
     "fixtures/files/features/text_images.feature",
     "fixtures/rails_2.3.5/template.rb",
     "fixtures/rails_3.0.3/template.rb",
+    "fog-dragonfly.gemspec",
     "irbrc.rb",
     "lib/dragonfly.rb",
     "lib/dragonfly/active_model_extensions.rb",
