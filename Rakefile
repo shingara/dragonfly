@@ -11,7 +11,7 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  gem.name = "dragonfly"
+  gem.name = "oahu-dragonfly"
   gem.email = "mark@new-bamboo.co.uk"
   gem.summary = %Q{Ideal gem for handling attachments in Rails, Sinatra and Rack applications.}
   gem.description = %Q{Dragonfly is a framework that enables on-the-fly processing for any content type.
