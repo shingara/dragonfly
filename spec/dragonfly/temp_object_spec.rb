@@ -135,6 +135,10 @@ describe Dragonfly::TempObject do
           file.should be_a(File)
           file.read.should == 'HELLO'
         end
+        it "should have 644 permissions" do
+          @temp_object.to_file(@filename)
+          File::Stat.new(@filename).mode.to_s(8).should =~ /644$/
+        end
       end
 
     end
@@ -157,6 +161,34 @@ describe Dragonfly::TempObject do
           part.length.should == 3001
         end
         parts.last.length.should <= 3001
+      end
+    end
+    
+    describe "closing" do
+      before(:each) do
+        @temp_object = new_temp_object("wassup")
+      end
+      it "should delete its tempfile" do
+        tempfile = @temp_object.tempfile
+        path = tempfile.path
+        path.should_not be_empty
+        @temp_object.close
+        File.exist?(path).should be_false
+      end
+      %w(tempfile file data).each do |method|
+        it "should raise error when calling #{method}" do
+          @temp_object.close
+          expect{
+            @temp_object.send(method)
+          }.to raise_error(Dragonfly::TempObject::Closed)
+        end
+      end
+      it "should not report itself as closed to begin with" do
+        @temp_object.should_not be_closed
+      end
+      it "should report itself as closed after closing" do
+        @temp_object.close
+        @temp_object.should be_closed
       end
     end
 
