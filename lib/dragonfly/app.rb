@@ -195,6 +195,10 @@ module Dragonfly
       generator.functions.keys
     end
 
+    def analyser_methods
+      analyser.analysis_method_names
+    end
+
     def job_methods
       job_definitions.definition_names
     end
